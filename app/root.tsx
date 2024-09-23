@@ -1,14 +1,22 @@
 import {
+  json,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
+  useLoaderData,
 } from "@remix-run/react";
-import type { LinksFunction } from "@remix-run/node";
+import type { LinksFunction , LoaderFunctionArgs} from "@remix-run/node";
 
 import "./tailwind.css";
+import invariant from "tiny-invariant";  // used for throwing errors
 
+export const loader = (params): LoaderFunctionArgs => {
+  invariant(params.contactId, "Missing contactId param");
+  const loggedIn = getLogin(params.contactId)
+  return json(loggedIn) 
+}
 export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -41,5 +49,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const loggedIn = useLoaderData<typeof loader>() // this is how you access the API reponse in the code
   return <Outlet />;
 }
