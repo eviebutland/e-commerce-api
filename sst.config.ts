@@ -5,13 +5,21 @@
 export default $config({
   app(input) {
     return {
-      name: "e-commerce-api",
+      name: "e-commerce-api-on-stop-christmas-shop",
       removal: input?.stage === "production" ? "retain" : "remove",
       home: "aws",
+      providers: {
+        aws: {
+          profile: input.stage === "production" ? "e-commerce-production" : "e-commerce-dev"
+        }
+      }
     };
   },
   async run() {
-    new sst.aws.Remix("MyWeb");
+    new sst.aws.Remix("e-commerce-api-on-stop-christmas-shop", {
+      // path: "my-remix-app/",
+      // domain: "my-app.com",
+    });
 
     await import('infra/api')
   },

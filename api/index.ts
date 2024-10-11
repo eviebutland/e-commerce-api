@@ -9,5 +9,5 @@
 
 
 export const getProducts = () => {
-    console.log('get all products')
+    console.log('get all products', 'here')
 }
