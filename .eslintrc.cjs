@@ -21,6 +21,21 @@ module.exports = {
   },
   ignorePatterns: ["!**/.server", "!**/.client"],
 
+  rules: {
+    'padding-line-between-statements': [
+      'error',
+      { blankLine: 'always', prev: ['const', 'let', 'var'], next: '*' },
+      { blankLine: 'any', prev: ['const', 'let', 'var'], next: ['const', 'let', 'var'] },
+      { blankLine: 'always', prev: ['case', 'default'], next: '*' },
+      { blankLine: 'always', prev: 'directive', next: '*' },
+      { blankLine: 'always', prev: 'function', next: '*' },
+      { blankLine: 'always', prev: '*', next: 'function' },
+      { blankLine: 'always', prev: 'if', next: '*' },
+      { blankLine: 'always', prev: '*', next: 'if' },
+      { blankLine: 'any', prev: 'directive', next: 'directive' },
+      { blankLine: 'any', prev: 'case', next: '*' }
+    ],
+  },
   // Base config
   extends: ["eslint:recommended"],
 
@@ -47,8 +62,10 @@ module.exports = {
         "import/resolver": {
           typescript: {},
         },
+        
       },
     },
+    
 
     // Typescript
     {

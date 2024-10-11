@@ -16,7 +16,7 @@ export const loader = (): boolean => {
   console.log('running in loader')
   return true
   // invariant(params.contactId, "Missing contactId param");
-  // const loggedIn = getLogin(params.contactId)
+  // const loggedIn = getLogin(params.contactId) 
   // return json(loggedIn) 
 }
 export const links: LinksFunction = () => [
